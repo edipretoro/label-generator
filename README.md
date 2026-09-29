@@ -2,7 +2,7 @@
 
 Outil en Python pour générer des étiquettes au format LaTeX à partir d'un fichier Excel ou CSV.
 
-Les étiquettes sont conçues pour être imprimées sur du papier autocollant non acide avec un cadre visible pour facilité de découpe. Le document produit est compatible avec LaTeX et peut être compilé vers PDF.
+Les étiquettes sont conçues pour être imprimées sur du papier autocollant non acide avec un cadre visible pour faciliter de découpe. Le document produit est compatible avec LaTeX et peut être compilé vers PDF.
 
 ## Fonctionnalités
 
