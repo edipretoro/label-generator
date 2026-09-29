@@ -61,6 +61,8 @@ def read_labels(excel_path: Path | str) -> list[tuple[str, str, str]]:
     labels: list[tuple[str, str, str]] = []
     for _, row in df.iterrows():
         box = str(row.get(box_col, "")).strip()
+        if box.startswith("PU0"):
+            box = box.lstrip("PU0")
         start = str(row.get(start_col, "")).strip()
         end = str(row.get(end_col, "")).strip()
 
