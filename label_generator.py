@@ -134,15 +134,13 @@ def render_latex(labels: list[tuple[str, str, str]], output_path: Path, top_marg
             left_box = left[0]
             left_start = left[1]
             left_end = left[2]
-
-            # Build the row using proper escaping
-            left_label = f"\\labelcell{{{left_box}}}{{{left_start}}}{{{left_end}}}"
+            left_label = "\\labelcell{" + str(left_box) + "}{" + str(left_start) + "}{" + str(left_end) + "}"
 
             if right is not None:
                 right_box = right[0]
                 right_start = right[1]
                 right_end = right[2]
-                right_label = f"\\labelcell{{{right_box}}}{{{right_start}}}{{{right_end}}}"
+                right_label = "\\labelcell{" + str(right_box) + "}{" + str(right_start) + "}{" + str(right_end) + "}"
                 latex_lines.append(f"{left_label} & {right_label} \\\\[0.8cm]")
             else:
                 latex_lines.append(f"{left_label} &  \\\\[0.8cm]")
@@ -197,7 +195,7 @@ def main() -> int:
         "--pdf", action="store_true", help="Compiler aussi en PDF (nécessite pdflatex)"
     )
     parser.add_argument(
-        "--top-margin", type=float, default=2.0, 
+        "--top-margin", type=float, default=2.0,
         help="Marge en haut de la page en cm (défaut: 2.0)"
     )
 
