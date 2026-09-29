@@ -45,7 +45,7 @@ def read_labels(excel_path: Path | str) -> list[tuple[str, str, str]]:
 
     cols = list(df.columns)
 
-    box_col = find_column(cols, ["boite", "box", "numero", "number"])
+    box_col = find_column(cols, ["boîte", "boite", "box", "numero", "number"])
     start_col = find_column(cols, ["de", "from", "debut", "start"])
     end_col = find_column(cols, ["a", "to", "fin", "end"])
 
