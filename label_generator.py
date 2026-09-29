@@ -103,13 +103,13 @@ def render_latex(labels: list[tuple[str, str, str]], output_path: Path, top_marg
         r"\setlength{\fboxsep}{3mm}",
         r"\setlength{\fboxrule}{0.5pt}",
         "",
-        r"\newcommand{\labelcell}[2]{%",
+        r"\newcommand{\labelcell}[3]{%",
         r"  \fbox{%",
         r"    \parbox[c][5.2cm][c]{0.42\textwidth}{%",
         r"      \centering",
         r"      \vspace{0.5cm}",
         r"      {\fontsize{22}{26}\selectfont \textbf{Boîte #1}}\\[0.9cm]",
-        r"      {\fontsize{15}{18}\selectfont Dossiers de #2}\\[0.3cm]",
+        r"      {\fontsize{15}{18}\selectfont Dossiers de #2 à #3}\\[0.3cm]",
         r"      {\fontsize{12}{14}\selectfont Permis d'urbanisme --- Bouwvergunning}\\[0.5cm]",
         r"    }%",
         r"  }%",
@@ -132,15 +132,17 @@ def render_latex(labels: list[tuple[str, str, str]], output_path: Path, top_marg
             right = page[i + 1] if i + 1 < len(page) else None
 
             left_box = left[0]
-            left_range = f"{left[1]} à {left[2]}"
+            left_start = left[1]
+            left_end = left[2]
 
             # Build the row using proper escaping
-            left_label = f"\\labelcell{{{left_box}}}{{{left_range}}}"
+            left_label = f"\\labelcell{{{left_box}}}{{{left_start}}}{{{left_end}}}"
 
             if right is not None:
                 right_box = right[0]
-                right_range = f"{right[1]} à {right[2]}"
-                right_label = f"\\labelcell{{{right_box}}}{{{right_range}}}"
+                right_start = right[1]
+                right_end = right[2]
+                right_label = f"\\labelcell{{{right_box}}}{{{right_start}}}{{{right_end}}}"
                 latex_lines.append(f"{left_label} & {right_label} \\\\[0.8cm]")
             else:
                 latex_lines.append(f"{left_label} &  \\\\[0.8cm]")
