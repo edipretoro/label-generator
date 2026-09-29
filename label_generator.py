@@ -80,13 +80,19 @@ def read_labels(excel_path: Path | str) -> list[tuple[str, str, str]]:
     return labels
 
 
-def render_latex(labels: list[tuple[str, str, str]], output_path: Path) -> None:
-    """Generate LaTeX document with labels."""
+def render_latex(labels: list[tuple[str, str, str]], output_path: Path, top_margin: float = 2.0) -> None:
+    """Generate LaTeX document with labels.
+    
+    Args:
+        labels: List of (box, start, end) tuples
+        output_path: Path to save the LaTeX file
+        top_margin: Top margin in cm (default 2.0)
+    """
     pages = [labels[i : i + 6] for i in range(0, len(labels), 6)]
 
     latex_lines = [
         r"\documentclass[11pt]{article}",
-        r"\usepackage[a4paper,margin=0mm]{geometry}",
+        r"\usepackage[a4paper,margin=0mm,top=" + f"{top_margin}cm" + r"]{geometry}",
         r"\usepackage[T1]{fontenc}",
         r"\usepackage[utf8]{inputenc}",
         r"\usepackage{helvet}",
@@ -187,12 +193,16 @@ def main() -> int:
     parser.add_argument(
         "--pdf", action="store_true", help="Compiler aussi en PDF (nécessite pdflatex)"
     )
+    parser.add_argument(
+        "--top-margin", type=float, default=2.0, 
+        help="Marge en haut de la page en cm (défaut: 2.0)"
+    )
 
     args = parser.parse_args()
 
     try:
         labels = read_labels(args.input)
-        render_latex(labels, Path(args.output))
+        render_latex(labels, Path(args.output), top_margin=args.top_margin)
 
         if args.pdf:
             try:
