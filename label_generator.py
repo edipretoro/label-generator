@@ -109,7 +109,7 @@ def render_latex(labels: list[tuple[str, str, str]], output_path: Path, top_marg
         r"      \centering",
         r"      \vspace{0.5cm}",
         r"      {\fontsize{22}{26}\selectfont \textbf{Boîte #1}}\\[0.9cm]",
-        r"      {\fontsize{15}{18}\selectfont Dossiers de #2 à #3}\\[0.3cm]",
+        r"      {\fontsize{15}{18}\selectfont Dossiers de #2 à #3}\\[0.7cm]",
         r"      {\fontsize{12}{14}\selectfont Permis d'urbanisme --- Bouwvergunning}\\[0.5cm]",
         r"    }%",
         r"  }%",
