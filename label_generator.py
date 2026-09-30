@@ -90,7 +90,7 @@ def render_latex(labels: list[tuple[str, str, str]], output_path: Path, top_marg
         output_path: Path to save the LaTeX file
         top_margin: Top margin in cm (default 2.0)
     """
-    pages = [labels[i : i + 8] for i in range(0, len(labels), 6)]
+    pages = [labels[i : i + 8] for i in range(0, len(labels), 8)]
 
     latex_lines = [
         r"\documentclass[11pt]{article}",
